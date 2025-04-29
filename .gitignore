@@ -1,0 +1,32 @@
+# Ignore virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Ignore log files
+*.log
+logs/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore IDE/editor configuration files
+.vscode/
+.idea/
+
+# Ignore generated CSVs (keep raw if needed)
+data/processed/
+# Uncomment below to ignore all CSV files
+# *.csv
+
+# Ignore temporary files
+*.swp
+*.tmp
+*.bak

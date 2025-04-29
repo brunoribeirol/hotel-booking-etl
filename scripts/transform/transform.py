@@ -275,6 +275,9 @@ if __name__ == "__main__":
         # Transform the data
         transformed_df = transform_data(df)
 
+        # Ensure processed directory exists
+        os.makedirs("data/processed", exist_ok=True)
+
         # Save the transformed data
         save_transformed_data(transformed_df, "data/processed/processed_data.csv")
 

@@ -1,4 +1,0 @@
-2025-04-28 23:21:04,479 - INFO - Data loaded successfully from data/raw/hotel_booking.csv
-2025-04-28 23:21:04,528 - INFO - General info retrieved
-2025-04-28 23:21:04,563 - WARNING - Some columns contain missing data.
-2025-04-28 23:21:04,648 - INFO - No duplicates detected.
