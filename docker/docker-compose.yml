@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: hotel_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - hotel_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    platform: linux/amd64
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase_data:/metabase-data
+    depends_on:
+      - postgres
+    environment:
+      MB_ANON_TRACKING_ENABLED: "false"
+      MB_SITE_NAME: "Hotel Booking Analytics"
+
+volumes:
+  hotel_pgdata:
+  metabase_data:

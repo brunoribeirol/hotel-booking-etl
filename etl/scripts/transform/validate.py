@@ -198,7 +198,7 @@ def run_validations(df):
 # Example usage
 if __name__ == "__main__":
     try:
-        df = pd.read_csv("data/processed/processed_data.csv")
+        df = pd.read_csv("etl/data/processed/processed_data.csv")
         if run_validations(df):
             logging.info("Validation completed successfully!")
         else:

@@ -1,32 +1,50 @@
-# Ignore virtual environments
+# =============================
+# Python Environment and Bytecode
+# =============================
+
+# Virtual environments
 venv/
 ENV/
 env/
 .venv/
 
-# Ignore log files
-*.log
-logs/
-
-# Ignore system files
-.DS_Store
-Thumbs.db
-
-# Ignore Python bytecode
+# Bytecode
 __pycache__/
 *.py[cod]
 *.so
 
-# Ignore IDE/editor configuration files
+# =============================
+# IDE and Editor Configurations
+# =============================
+
 .vscode/
 .idea/
 
-# Ignore generated CSVs (keep raw if needed)
-data/processed/
-# Uncomment below to ignore all CSV files
-# *.csv
+# =============================
+# Log Files and Temporary Files
+# =============================
 
-# Ignore temporary files
+*.log
+logs/
 *.swp
 *.tmp
 *.bak
+
+# =============================
+# Data Outputs and Artifacts
+# =============================
+
+# Ignore intermediate and generated data
+etl/data/processed/
+etl/data/dimensions/
+etl/data/facts/
+
+# Optional: ignore all CSVs
+# *.csv
+
+# =============================
+# System Files
+# =============================
+
+.DS_Store
+Thumbs.db

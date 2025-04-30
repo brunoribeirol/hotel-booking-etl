@@ -67,13 +67,13 @@ def load_data(file_path):
         raise  # Re-raise the exception to allow higher-level handling
 
 
-def main(file_path="data/raw/hotel_booking.csv"):
+def main(file_path="etl/data/raw/hotel_booking.csv"):
     """
     Main function that loads the data, checks for missing data and duplicates,
     and logs the results.
 
     Parameters:
-    file_path (str): Path to the CSV file to be loaded. Default is 'data/raw/hotel_booking.csv'.
+    file_path (str): Path to the CSV file to be loaded. Default is 'etl/data/raw/hotel_booking.csv'.
     """
     try:
         # Load data

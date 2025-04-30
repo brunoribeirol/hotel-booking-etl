@@ -5,7 +5,6 @@ import os
 
 # from sklearn.preprocessing import LabelEncoder
 
-
 # Ensure that the "logs" directory exists
 os.makedirs("logs", exist_ok=True)
 
@@ -270,16 +269,16 @@ def save_transformed_data(df: pd.DataFrame, output_path: str):
 if __name__ == "__main__":
     # Load the dataset
     try:
-        df = load_data("data/raw/hotel_booking.csv")
+        df = load_data("etl/data/raw/hotel_booking.csv")
 
         # Transform the data
         transformed_df = transform_data(df)
 
         # Ensure processed directory exists
-        os.makedirs("data/processed", exist_ok=True)
+        os.makedirs("etl/data/processed", exist_ok=True)
 
         # Save the transformed data
-        save_transformed_data(transformed_df, "data/processed/processed_data.csv")
+        save_transformed_data(transformed_df, "etl/data/processed/processed_data.csv")
 
     except Exception as e:
         logging.error(f"An error occurred: {e}")

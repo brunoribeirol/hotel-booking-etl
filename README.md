@@ -1,46 +1,136 @@
-## About Dataset
+# Hotel Booking ETL Pipeline
 
-- This dataset contains detailed information about hotel bookings, including cancellations. It includes variables such as booking date, cancellation status, lead time, customer type, and hotel type (city or resort). The dataset is useful for analyzing trends in hotel booking cancellations, understanding customer behavior, and predicting cancellation likelihood. Ideal for data science projects involving classification, time series analysis, or building predictive models to minimize hotel cancellations and optimize booking strategies.
+This project implements a complete ETL (Extract, Transform, Load) pipeline for hotel booking data using Python and PostgreSQL. It includes scripts for data extraction, transformation into dimensional modeling (star schema), and loading into a PostgreSQL data warehouse. Final data can be visualized using Metabase.
 
-- Dataset Description: Hotel Booking Analysis
+---
 
-- This dataset provides comprehensive information on hotel bookings, allowing for in-depth analysis of factors affecting reservations and cancellations. Key features include:
+## 📁 Project Structure
 
-- **hotel**: Hotel type where the booking was made (e.g., Resort Hotel or City Hotel).
-- **is_canceled**: Whether the booking was canceled (1 = Yes, 0 = No).
-- **lead_time**: Number of days between booking date and arrival date.
-- **arrival_date_year**: Year of the guest's arrival.
-- **arrival_date_month**: Month of the guest's arrival.
-- **arrival_date_week_number**: ISO week number of the guest's arrival.
-- **arrival_date_day_of_month**: Day of the month when the guest is scheduled to arrive.
-- **stays_in_weekend_nights**: Number of weekend nights (Saturday and Sunday) the guest stayed or booked.
-- **stays_in_week_nights**: Number of weekday nights (Monday to Friday) the guest stayed or booked.
-- **adults**: Number of adults included in the booking.
-- **children**: Number of children included in the booking.
-- **babies**: Number of babies included in the booking.
-- **meal**: Type of meal plan booked (e.g., BB = Bed & Breakfast, HB = Half Board, FB = Full Board, SC = Self Catering).
-- **country**: Country of origin of the guest.
-- **market_segment**: Market segment designation (e.g., Direct, Corporate, Online TA).
-- **distribution_channel**: Booking distribution channel (e.g., Travel Agent, Direct).
-- **is_repeated_guest**: Whether the guest is a returning visitor (1 = Yes, 0 = No).
-- **previous_cancellations**: Number of previous bookings that were canceled by the guest.
-- **previous_bookings_not_canceled**: Number of previous bookings that were not canceled.
-- **reserved_room_type**: Code of the room type initially reserved.
-- **assigned_room_type**: Code of the room type assigned at check-in (may differ from reserved).
-- **booking_changes**: Number of changes made to the booking.
-- **deposit_type**: Type of deposit made for the booking (e.g., No Deposit, Non-Refund, Refundable).
-- **agent**: ID of the travel agent who made the booking (if applicable).
-- **company**: ID of the company that made the booking (if applicable).
-- **days_in_waiting_list**: Number of days the booking was on the waiting list.
-- **customer_type**: Type of customer (e.g., Contract, Group, Transient, Transient-Party).
-- **adr**: Average Daily Rate — average revenue per occupied room.
-- **required_car_parking_spaces**: Number of car parking spaces required.
-- **total_of_special_requests**: Number of special requests made by the guest.
-- **reservation_status**: Status of the reservation (e.g., Canceled, Check-Out, No-Show).
-- **reservation_status_date**: Date when the last reservation status was updated.
-- **name**: Guest's full name.
-- **email**: Guest's email address.
-- **phone-number**: Guest's phone number.
-- **credit_card**: Guest's credit card information (anonymized or encoded).
+```bash
+hotel-booking-etl/
+├── etl/
+│   ├── config/                     # Database config
+│   │   └── config.py
+│   ├── data/                       # Data folders
+│   │   ├── raw/                    # Raw CSV input
+│   │   ├── processed/              # Processed data
+│   │   ├── dimensions/             # Dimension tables
+│   │   └── facts/                  # Fact tables
+│   ├── scripts/
+│   │   ├── extract/               # Extraction logic
+│   │   │   └── extract.py
+│   │   ├── transform/             # Transform logic (by table)
+│   │   │   ├── transform.py
+│   │   │   ├── transform_dim_country.py
+│   │   │   ├── transform_dim_hotel.py
+│   │   │   ├── transform_dim_meal.py
+│   │   │   ├── transform_dim_customer.py
+│   │   │   └── transform_fact_bookings.py
+│   │   ├── load/                  # Load logic (by table)
+│   │   │   ├── load.py
+│   │   │   ├── load_dim_country.py
+│   │   │   ├── load_dim_hotel.py
+│   │   │   ├── load_dim_meal.py
+│   │   │   ├── load_dim_customer.py
+│   │   │   └── load_fact_bookings.py
+│   │   └── utils/                 # Logger and DB helpers
+│   │       ├── db_connection.py
+│   │       └── logger.py
+├── logs/                          # Auto-generated log files
+├── Makefile                       # ETL automation commands
+├── requirements.txt               # Python dependencies
+├── README.md                      # Project documentation
+└── docs/                          # Extra documentation files
+    ├── data_dictionary.pdf
+    └── process_flow.pdf
+```
 
-- This dataset is ideal for examining booking trends, predicting cancellations, and understanding guest behavior across different time periods and demographics.
+---
+
+## 🚀 How to Run the Project
+
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Start PostgreSQL (Docker)
+
+```bash
+docker-compose up -d
+```
+
+### 3. Run the ETL pipeline
+
+```bash
+make clean     # Clears DB tables and cached files
+make all       # Full pipeline: extract → transform → load
+```
+
+### 4. Optional: Load Metabase
+
+Access Metabase and connect to `hotel_dw` PostgreSQL database to create dashboards.
+
+---
+
+## 📊 Dashboards to Create in Metabase
+
+- Bookings per country
+- Average ADR per hotel type
+- Cancellation rates over time
+- Booking distribution by customer type
+
+---
+
+## ✅ Semantic Commit Suggestion
+
+If this was your final working commit after implementing the whole project:
+
+```bash
+git commit -m "feat: implement full ETL pipeline with transformation and PostgreSQL load"
+```
+
+Other commits you could have used:
+
+- `feat: add transformation scripts for dimensions and fact table`
+- `fix: resolve primary key constraint issue on fact_bookings`
+- `chore: update Makefile with full reset logic`
+
+---
+
+## 🧾 .gitignore
+
+```gitignore
+# Python artifacts
+__pycache__/
+*.pyc
+
+# Logs
+logs/*.log
+
+# Data
+etl/data/processed/
+etl/data/dimensions/
+etl/data/facts/
+
+# Python environments
+.venv/
+.env
+
+# System files
+.DS_Store
+
+# Cache
+.pytest_cache/
+```
+
+---
+
+## 📄 Docs
+
+- `data_dictionary.pdf` — Contains descriptions for each column in dimensions and fact tables.
+- `process_flow.pdf` — Shows the ETL process from raw data to PostgreSQL.
+
+---
+
