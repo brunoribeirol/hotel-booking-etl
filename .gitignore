@@ -39,9 +39,6 @@ etl/data/processed/
 etl/data/dimensions/
 etl/data/facts/
 
-# Optional: ignore all CSVs
-# *.csv
-
 # =============================
 # System Files
 # =============================

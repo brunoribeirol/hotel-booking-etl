@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from etl.scripts.utils.logger import setup_logger
+from etl.jobs.utils.logger import setup_logger
 
 logger = setup_logger("transform_dim_country", "transform_dim_country.log")
 
@@ -195,7 +195,7 @@ def extract_unique_countries(df: pd.DataFrame) -> pd.DataFrame:
         lambda code: COUNTRY_CODE_MAP.get(code, f"Unknown ({code})")
     )
     unique_countries.insert(0, "country_id", range(1, len(unique_countries) + 1))
-    return unique_countries
+    return unique_countries[["country_id", "country_code", "country"]]
 
 
 def main():

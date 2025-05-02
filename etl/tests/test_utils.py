@@ -1,5 +1,5 @@
-from etl.scripts.utils.db_connection import get_db_connection
-from etl.scripts.utils.logger import setup_logger
+from etl.jobs.utils.db_connection import get_db_connection
+from etl.jobs.utils.logger import setup_logger
 
 logger = setup_logger("test_get_db_connection", "test_get_db_connection.log")
 

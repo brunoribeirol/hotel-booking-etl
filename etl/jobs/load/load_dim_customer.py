@@ -3,7 +3,7 @@ import psycopg2
 import logging
 import os
 from etl.config import config
-from etl.scripts.utils.db_connection import get_db_connection
+from etl.jobs.utils.db_connection import get_db_connection
 
 # Logger config
 LOG_FILE = "logs/load_dim_customer.log"

@@ -42,7 +42,7 @@ help:
 # ---------------------------------------
 extract:
 	@echo "🔍 Starting extraction..."
-	@PYTHONPATH=. python -m etl.scripts.extract.extract
+	@PYTHONPATH=. python -m etl.jobs.extract.extract
 	@echo "✅ Extraction complete."
 
 # ---------------------------------------
@@ -50,23 +50,23 @@ extract:
 # ---------------------------------------
 transform:
 	@echo "🔧 Starting transformation..."
-	@PYTHONPATH=. python -m etl.scripts.transform.transform
+	@PYTHONPATH=. python -m etl.jobs.transform.transform
 	@echo "✅ Transformation complete."
 
 transform-hotel:
-	@PYTHONPATH=. python -m etl.scripts.transform.transform_dim_hotel
+	@PYTHONPATH=. python -m etl.jobs.transform.transform_dim_hotel
 
 transform-country:
-	@PYTHONPATH=. python -m etl.scripts.transform.transform_dim_country
+	@PYTHONPATH=. python -m etl.jobs.transform.transform_dim_country
 
 transform-meal:
-	@PYTHONPATH=. python -m etl.scripts.transform.transform_dim_meal
+	@PYTHONPATH=. python -m etl.jobs.transform.transform_dim_meal
 
 transform-customer:
-	@PYTHONPATH=. python -m etl.scripts.transform.transform_dim_customer
+	@PYTHONPATH=. python -m etl.jobs.transform.transform_dim_customer
 
 transform-fact:
-	@PYTHONPATH=. python -m etl.scripts.transform.transform_fact_bookings
+	@PYTHONPATH=. python -m etl.jobs.transform.transform_fact_bookings
 
 transform-dimensions: transform-hotel transform-country transform-meal transform-customer transform-fact
 	@echo "✅ All dimension and fact transformations complete."
@@ -76,7 +76,7 @@ transform-dimensions: transform-hotel transform-country transform-meal transform
 # ---------------------------------------
 validate:
 	@echo "🔎 Starting validation..."
-	@PYTHONPATH=. python -m etl.scripts.transform.validate
+	@PYTHONPATH=. python -m etl.jobs.transform.validate
 	@echo "✅ Validation complete."
 
 # ---------------------------------------
@@ -84,23 +84,23 @@ validate:
 # ---------------------------------------
 load:
 	@echo "📄 Loading staging data to PostgreSQL..."
-	@PYTHONPATH=. python -m etl.scripts.load.load
+	@PYTHONPATH=. python -m etl.jobs.load.load
 	@echo "✅ Staging load complete."
 
 load-hotel:
-	@PYTHONPATH=. python -m etl.scripts.load.load_dim_hotel
+	@PYTHONPATH=. python -m etl.jobs.load.load_dim_hotel
 
 load-country:
-	@PYTHONPATH=. python -m etl.scripts.load.load_dim_country
+	@PYTHONPATH=. python -m etl.jobs.load.load_dim_country
 
 load-meal:
-	@PYTHONPATH=. python -m etl.scripts.load.load_dim_meal
+	@PYTHONPATH=. python -m etl.jobs.load.load_dim_meal
 
 load-customer:
-	@PYTHONPATH=. python -m etl.scripts.load.load_dim_customer
+	@PYTHONPATH=. python -m etl.jobs.load.load_dim_customer
 
 load-fact:
-	@PYTHONPATH=. python -m etl.scripts.load.load_fact_bookings
+	@PYTHONPATH=. python -m etl.jobs.load.load_fact_bookings
 
 load-dimensions: load-hotel load-country load-meal load-customer load-fact
 	@echo "✅ All dimension and fact loads complete."

@@ -1,4 +1,4 @@
-# Hotel Booking ETL Pipeline
+# 🏨 Hotel Booking ETL Pipeline
 
 This project implements a complete ETL (Extract, Transform, Load) pipeline for hotel booking data using Python and PostgreSQL. It includes scripts for data extraction, transformation into dimensional modeling (star schema), and loading into a PostgreSQL data warehouse. Final data can be visualized using Metabase.
 
@@ -36,13 +36,35 @@ hotel-booking-etl/
 │   │   └── utils/                 # Logger and DB helpers
 │   │       ├── db_connection.py
 │   │       └── logger.py
-├── logs/                          # Auto-generated log files
-├── Makefile                       # ETL automation commands
-├── requirements.txt               # Python dependencies
-├── README.md                      # Project documentation
-└── docs/                          # Extra documentation files
-    ├── data_dictionary.pdf
-    └── process_flow.pdf
+│
+├── docs/                          # Documentation files
+│   ├── cheatsheets/
+│   │   └── psql_cheatsheet.md
+│   ├── kpi/                       # Visual insights and KPI dashboard
+│   │   ├── images/                # Visuals used in documentation
+│   │   │   ├── adr_revenue_by_hotel.png
+│   │   │   ├── average_lead_time.png
+│   │   │   ├── booked_nights_by_month.png
+│   │   │   ├── bookings_by_country.png
+│   │   │   └── cancellation_rate.png
+│   │   └── kpi_dashboard.md      # KPI insights and charts
+│   ├── troubleshooting/
+│   │   └── postgres_docker_errors.md
+│   ├── data_dictionary.md        # Describes all tables and columns
+│   └── process_flow.md           # ETL process explanation/diagram
+│
+├── docker/                       # Docker configuration files
+│   └── docker-compose.yml
+├── tests/                        # Unit tests for ETL components
+│   ├── test_connection.py
+│   ├── test_utils.py
+│   └── ...
+├── logs/                         # Auto-generated log files
+├── Makefile                      # ETL automation commands
+├── requirements.txt              # Python dependencies
+├── .gitignore
+├── LICENSE
+├── README.md                     # Project documentation
 ```
 
 ---
@@ -70,67 +92,41 @@ make all       # Full pipeline: extract → transform → load
 
 ### 4. Optional: Load Metabase
 
-Access Metabase and connect to `hotel_dw` PostgreSQL database to create dashboards.
+Access Metabase and connect to the `hotel_dw` PostgreSQL database to create dashboards.
 
 ---
 
 ## 📊 Dashboards to Create in Metabase
 
-- Bookings per country
-- Average ADR per hotel type
-- Cancellation rates over time
-- Booking distribution by customer type
+- Bookings per country (Region Map)
+- ADR and Revenue per hotel (Bar Chart)
+- Booking trends by month and hotel (Time Series)
+- Lead time by country (Bar Chart)
+- Cancellation rate by country (Stacked Bar)
+
+See visual examples and analysis in [`docs/kpi/kpi_dashboard.md`](./docs/kpi/kpi_dashboard.md).
 
 ---
 
-## ✅ Semantic Commit Suggestion
+## 📄 Documentation
 
-If this was your final working commit after implementing the whole project:
-
-```bash
-git commit -m "feat: implement full ETL pipeline with transformation and PostgreSQL load"
-```
-
-Other commits you could have used:
-
-- `feat: add transformation scripts for dimensions and fact table`
-- `fix: resolve primary key constraint issue on fact_bookings`
-- `chore: update Makefile with full reset logic`
+- `docs/data_dictionary.md` — Describes columns of all dimension and fact tables.
+- `docs/process_flow.md` — Shows the step-by-step ETL architecture.
+- `docs/kpi/kpi_dashboard.md` — Final business insights, KPIs and Metabase charts.
+- `docs/cheatsheets/psql_cheatsheet.md` — Common SQL queries
+- `docs/troubleshooting/postgres_docker_errors.md` — Docker/DB debugging help
 
 ---
 
-## 🧾 .gitignore
+## ✅ Requirements
 
-```gitignore
-# Python artifacts
-__pycache__/
-*.pyc
-
-# Logs
-logs/*.log
-
-# Data
-etl/data/processed/
-etl/data/dimensions/
-etl/data/facts/
-
-# Python environments
-.venv/
-.env
-
-# System files
-.DS_Store
-
-# Cache
-.pytest_cache/
-```
+- Python 3.8+
+- PostgreSQL 13+
+- Docker
+- Metabase (optional, for dashboarding)
 
 ---
 
-## 📄 Docs
+## 🌍 License
 
-- `data_dictionary.pdf` — Contains descriptions for each column in dimensions and fact tables.
-- `process_flow.pdf` — Shows the ETL process from raw data to PostgreSQL.
-
----
-
+[LICENSE]

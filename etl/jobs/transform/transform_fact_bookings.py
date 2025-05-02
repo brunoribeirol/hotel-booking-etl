@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from etl.scripts.utils.logger import setup_logger
+from etl.jobs.utils.logger import setup_logger
 
 logger = setup_logger("transform_fact_bookings", "transform_fact_bookings.log")
 

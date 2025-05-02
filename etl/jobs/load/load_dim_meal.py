@@ -3,8 +3,8 @@ import psycopg2
 import logging
 import os
 from etl.config import config
-from etl.scripts.utils.logger import setup_logger
-from etl.scripts.utils.db_connection import get_db_connection
+from etl.jobs.utils.logger import setup_logger
+from etl.jobs.utils.db_connection import get_db_connection
 
 logger = setup_logger("load_dim_meal", "load_dim_meal.log")
 CSV_PATH = "etl/data/dimensions/dim_meal.csv"

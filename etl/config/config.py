@@ -11,3 +11,5 @@ DB_CONFIG = {
     "user": os.getenv("POSTGRES_USER", "postgres"),
     "password": os.getenv("POSTGRES_PASSWORD", "1234"),
 }
+
+RAW_DATA = "etl/data/raw/hotel_booking.csv"
