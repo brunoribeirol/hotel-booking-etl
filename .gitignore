@@ -40,6 +40,18 @@ etl/data/dimensions/
 etl/data/facts/
 
 # =============================
+# Secrets and Environment Files
+# =============================
+
+.env
+.env.*
+!*.env.example
+
+# Docker files
+docker/.env
+docker/.dockerignore
+
+# =============================
 # System Files
 # =============================
 

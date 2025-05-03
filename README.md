@@ -80,6 +80,7 @@ pip install -r requirements.txt
 ### 2. Start PostgreSQL (Docker)
 
 ```bash
+cd docker
 docker-compose up -d
 ```
 
@@ -129,4 +130,4 @@ See visual examples and analysis in [`docs/kpi/kpi_dashboard.md`](./docs/kpi/kpi
 
 ## 🌍 License
 
-[LICENSE]
+[LICENSE](LICENSE)
