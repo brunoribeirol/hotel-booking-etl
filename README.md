@@ -53,8 +53,6 @@ hotel-booking-etl/
 │   ├── data_dictionary.md        # Describes all tables and columns
 │   └── process_flow.md           # ETL process explanation/diagram
 │
-├── docker/                       # Docker configuration files
-│   └── docker-compose.yml
 ├── tests/                        # Unit tests for ETL components
 │   ├── test_connection.py
 │   ├── test_utils.py
@@ -65,6 +63,7 @@ hotel-booking-etl/
 ├── .gitignore
 ├── LICENSE
 ├── README.md                     # Project documentation
+├── docker-compose.yml
 ```
 
 ---
@@ -80,7 +79,6 @@ pip install -r requirements.txt
 ### 2. Start PostgreSQL (Docker)
 
 ```bash
-cd docker
 docker-compose up -d
 ```
 

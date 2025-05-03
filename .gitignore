@@ -48,8 +48,7 @@ etl/data/facts/
 !*.env.example
 
 # Docker files
-docker/.env
-docker/.dockerignore
+.dockerignore
 
 # =============================
 # System Files
